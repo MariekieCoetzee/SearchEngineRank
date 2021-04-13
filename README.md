@@ -2,7 +2,7 @@
 
 This application returns domain ranking performances, in an online title search.
 
-<img width="675" src="https://github.com/MariekieCoetzee/SEOWebSearch/blob/master/TitleSearch/Images/SearchRequest.png" />
+<img width="675" src="https://github.com/MariekieCoetzee/SearchEngineRank/blob/master/SearchEngineRank/Images/SearchRequest.png" />
 
 The keyword and domain fields are prepopulated with 'online title search' and 'infotrack.com.au' respectfully. 
 A selection of search engines are available.  The results will be based on static pages provided by InfoTrack.
@@ -11,11 +11,11 @@ Different domains can be searched to view their ranking positions.
 
 The result will be displayed on a new screen and provides a back navigation button.
 
-<img width="675" src="https://github.com/MariekieCoetzee/SEOWebSearch/blob/master/TitleSearch/Images/SearchResult.png" />
+<img width="675" src="https://github.com/MariekieCoetzee/SearchEngineRank/blob/master/SearchEngineRank/Images/SearchResult.png" />
 
 ## Design Considerations
 
-<img width="675" src="https://github.com/MariekieCoetzee/SEOWebSearch/blob/master/TitleSearch/Images/Design.png" />
+<img width="675" src="https://github.com/MariekieCoetzee/SearchEngineRank/blob/master/SearchEngineRank/Images/Design.png" />
 
 ## Current version
 
