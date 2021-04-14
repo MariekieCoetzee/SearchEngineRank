@@ -21,10 +21,10 @@ namespace SearchEngineRank.SearchEngines
             // If keyword is null or 'online title search' return InfoTrack Google/Bing static pages 
             if (searchEngine.ToLower() == "google")
             {
-                if (keywords == null || keywords.ToLower() == "online title search")
-                    return new InfotrackGoogleSearchEngineParser();
-                else
-                    return new GoogleSearchEngineParser();
+                //if (keywords == null || keywords.ToLower() == "online title search")
+                //    return new InfotrackGoogleSearchEngineParser();
+                //else
+                return new GoogleSearchEngineParser();
             }
             if (searchEngine.ToLower() == "bing")
             {

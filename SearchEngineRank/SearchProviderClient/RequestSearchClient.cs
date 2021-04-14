@@ -5,10 +5,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using SearchEngineRank.SearchEngines;
 using SearchEngineRank.Models;
+using HtmlAgilityPack;
 
 namespace SearchEngineRank.SearchProviderClient
 {
-   public class RequestSearchClient
+    public class RequestSearchClient
     {
         public RequestSearchClient()
         {
@@ -23,6 +24,8 @@ namespace SearchEngineRank.SearchProviderClient
                 ISearchEngineParser engine = searchEngineParserFactory.getNewSearchEngineParser(searchRequest.SearchEngine, searchRequest.Keywords);
 
                 string url = engine.constructSearchURL(searchRequest.Keywords, 1);
+
+                getHTML(url);
 
                 EndPointClient endPointClient = new EndPointClient();
                 HttpClient httpClient = new HttpClient();
@@ -50,12 +53,21 @@ namespace SearchEngineRank.SearchProviderClient
                 return searchResults;
 
             }
-           
+
             catch (Exception ex)
             {
                 throw ex;
             }
 
+        }
+
+        private void getHTML(string url)
+        {
+            HtmlWeb web = new HtmlWeb();
+
+            var htmlDoc = web.Load(url);
+
+            var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
         }
 
         private List<SearchResult> filterResults(Page pageResults, string baseDomain)
