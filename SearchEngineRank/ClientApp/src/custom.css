@@ -18,3 +18,19 @@ code {
     color: white;
     margin-top: 15px;
 }
+.background-color-lighter{
+    background-color:#ffeedf;
+}
+.color-light {
+    color: #ffc34c;
+}
+.background-color-light {
+    background-color: #ffc34c;
+}
+
+.background-color-dark {
+    background-color: #ff8c3d;
+}
+.color-contrast {
+    color: #aed665;
+}

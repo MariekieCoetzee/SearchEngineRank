@@ -21,7 +21,8 @@ const App = () => {
 
     }, []);
     return (
-        <div>
+        <div className="background-color-lighter">
+            
             {data !== "" ?
                 <SearchQuery data={data} />
                 : null}
