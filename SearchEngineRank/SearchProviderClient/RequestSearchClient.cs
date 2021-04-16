@@ -9,7 +9,7 @@ using HtmlAgilityPack;
 
 namespace SearchEngineRank.SearchProviderClient
 {
-    public class RequestSearchClient
+   public class RequestSearchClient
     {
         public RequestSearchClient()
         {
@@ -25,12 +25,14 @@ namespace SearchEngineRank.SearchProviderClient
 
                 string url = engine.constructSearchURL(searchRequest.Keywords, 1);
 
-                getHTML(url);
-
                 EndPointClient endPointClient = new EndPointClient();
                 HttpClient httpClient = new HttpClient();
 
+                AgilityScraper(url);
+                
+                //
                 string response = await endPointClient.InvokeEndpoint(httpClient, url);
+
                 Page pageResults = engine.parsePage(response);
 
                 for (int i = 1; i <= pageResults.NumberOfPages;)
@@ -53,7 +55,7 @@ namespace SearchEngineRank.SearchProviderClient
                 return searchResults;
 
             }
-
+           
             catch (Exception ex)
             {
                 throw ex;
@@ -61,13 +63,13 @@ namespace SearchEngineRank.SearchProviderClient
 
         }
 
-        private void getHTML(string url)
+        private void AgilityScraper(string url)
         {
+            //agility pack
             HtmlWeb web = new HtmlWeb();
 
             var htmlDoc = web.Load(url);
-
-            var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
+            var aTags = htmlDoc.DocumentNode.SelectNodes("//a");
         }
 
         private List<SearchResult> filterResults(Page pageResults, string baseDomain)

@@ -24,7 +24,7 @@ namespace SearchEngineRank.SearchEngines
                 //if (keywords == null || keywords.ToLower() == "online title search")
                 //    return new InfotrackGoogleSearchEngineParser();
                 //else
-                return new GoogleSearchEngineParser();
+                    return new GoogleSearchEngineParser();
             }
             if (searchEngine.ToLower() == "bing")
             {

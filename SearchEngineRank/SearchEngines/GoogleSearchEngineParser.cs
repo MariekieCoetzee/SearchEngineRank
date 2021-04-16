@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Text.RegularExpressions;
 using SearchEngineRank.Models;
+using SearchEngineRank.SearchProviderClient;
 
 namespace SearchEngineRank.SearchEngines
 {
@@ -10,6 +13,8 @@ namespace SearchEngineRank.SearchEngines
         {
 
         }
+
+
         public string constructSearchURL(string keywords, int pageNr)
         {
             try
@@ -43,8 +48,16 @@ namespace SearchEngineRank.SearchEngines
             try
             {
                 List<SearchResult> results = new List<SearchResult>();
-
-
+                Regex rx = new Regex("(?<=<div class=\"ZINbbc)(.*?)(?=</div><div class=\"ZINbbc)", RegexOptions.IgnoreCase);
+                MatchCollection matches = rx.Matches(html);
+                foreach (Match match in matches)
+                {
+                    SearchResult result = new SearchResult();
+                    result.DomainName = extractDomain(match.Value);
+                    result.Url = extractURL(match.Value);
+                    result.Name = extractName(match.Value);
+                    results.Add(result);
+                }
                 return results;
             }
             catch (Exception ex)
@@ -54,6 +67,24 @@ namespace SearchEngineRank.SearchEngines
 
         }
 
+        private string extractName(string htmlSection)
+        {
+            Regex nameRX = new Regex("(?<=class=\"BNeawe vvjwJb AP7Wnd\">)(.*?)(?=<)");
+            return WebUtility.HtmlDecode(nameRX.Match(htmlSection).Value);
 
+        }
+        private string extractDomain(string htmlSection)
+        {
+            Regex pageRX = new Regex("(?<=<div class=\"BNeawe UPmit AP7Wnd\">)(.*?)(?=<)");
+            EndPointClient endPointClient = new EndPointClient();
+            return endPointClient.extractBaseDomain(pageRX.Match(htmlSection).Value);
+
+        }
+
+        private string extractURL(string htmlSection)
+        {
+            Regex pageRX = new Regex("(?<=href=\")(.*?)(?=\")");
+            return pageRX.Match(htmlSection).Value;
+        }
     }
 }
