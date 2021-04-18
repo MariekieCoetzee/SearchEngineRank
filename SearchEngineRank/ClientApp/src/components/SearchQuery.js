@@ -82,13 +82,13 @@ const SearchQuery = (data) => {
                             </select>
                         </div>
                     </div>
-                    <button
-                        type="submit"
-                        style={{ width: "inherit" }}
-                        className="btn btn-SERank"
-                    >
-                        Search
-          </button>
+                    <button type="submit" style={{ width: "inherit" }} className="btn-SERank pushable">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                        <span class="front">
+                            Search
+  </span>
+                    </button>
                 </form>
             </div>
             <SearchResults data={results} />
