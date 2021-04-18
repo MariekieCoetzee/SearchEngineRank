@@ -36,12 +36,15 @@ const SearchQuery = (data) => {
     return (
         <div className="background-color-lighter">
             <div className="mt-5" >
+                <div className="ml-5" style={{ position: "absolute" }}>
+                    <div style={{ borderLeft: "1px", height: "200px", borderStyle: "solid" }}> </div>
+                </div>
                 <form className="container" onSubmit={prepareSearchQuery}>
 
                     <div className="form-group row">
                         <FontAwesomeIcon icon={['fas', 'fa-address-book']} size="3x" />
-                        <label className="col-sm-1 col-form-label text-white">
-                            Keywords{" "}
+                        <label className="col-sm-1 col-form-label">
+                            Keywords
                         </label>
                         <div className="col-sm-11">
                             <input
@@ -56,7 +59,7 @@ const SearchQuery = (data) => {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label className="col-sm-1 col-form-label text-white">Domain</label>
+                        <label className="col-sm-1 col-form-label">Domain</label>
                         <div className="col-sm-11">
                             <input
                                 type="text"
@@ -68,7 +71,7 @@ const SearchQuery = (data) => {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label className="col-sm-1 col-form-label text-white">Engine</label>
+                        <label className="col-sm-1 col-form-label">Engine</label>
                         <div className="col-sm-11">
                             <select
                                 id="selectEngine"
@@ -83,16 +86,16 @@ const SearchQuery = (data) => {
                         </div>
                     </div>
                     <button type="submit" style={{ width: "inherit" }} className="btn-SERank pushable">
-                        <span class="shadow"></span>
-                        <span class="edge"></span>
-                        <span class="front">
+                        <span className="shadow"></span>
+                        <span className="edge"></span>
+                        <span className="front">
                             Search
   </span>
                     </button>
                 </form>
             </div>
             <SearchResults data={results} />
-        </div>
+        </div >
     );
 };
 export default SearchQuery;
