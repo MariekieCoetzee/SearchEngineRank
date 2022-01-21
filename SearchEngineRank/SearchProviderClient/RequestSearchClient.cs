@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using SearchEngineRank.SearchEngines;
 using SearchEngineRank.Models;
+using HtmlAgilityPack;
 
 namespace SearchEngineRank.SearchProviderClient
 {
@@ -27,7 +28,11 @@ namespace SearchEngineRank.SearchProviderClient
                 EndPointClient endPointClient = new EndPointClient();
                 HttpClient httpClient = new HttpClient();
 
+                AgilityScraper(url);
+                
+                //
                 string response = await endPointClient.InvokeEndpoint(httpClient, url);
+
                 Page pageResults = engine.parsePage(response);
 
                 for (int i = 1; i <= pageResults.NumberOfPages;)
@@ -56,6 +61,15 @@ namespace SearchEngineRank.SearchProviderClient
                 throw ex;
             }
 
+        }
+
+        private void AgilityScraper(string url)
+        {
+            //agility pack
+            HtmlWeb web = new HtmlWeb();
+
+            var htmlDoc = web.Load(url);
+            var aTags = htmlDoc.DocumentNode.SelectNodes("//a");
         }
 
         private List<SearchResult> filterResults(Page pageResults, string baseDomain)
